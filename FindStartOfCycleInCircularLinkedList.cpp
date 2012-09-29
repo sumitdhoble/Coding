@@ -8,7 +8,8 @@ typedef struct node {
 	node *next;
 }node;
 
-// Detects whether a linked list contains cycle. If yes, then the start node of that cycle is returned. If there is no cycle, NULL value is returned.
+// Detects whether a linked list contains cycle. If yes, then the start node of that cycle is returned. 
+// If there is no cycle, NULL value is returned. Also prints the total number of elements in the linked List
 node *FindStartNodeOfCycle(node *head);
 
 int main(){
@@ -36,7 +37,7 @@ int main(){
 	startNodeOfCycle = FindStartNodeOfCycle(head);
 
 	if(startNodeOfCycle != NULL)
-		cout << startNodeOfCycle->value << endl;
+		cout << "Starting node of cycle : " << startNodeOfCycle->value << endl;
 	else
 		cout << "No cycle in the list" << endl;
 
@@ -50,6 +51,7 @@ node *FindStartNodeOfCycle(node *head){
 	single = head;
 	twice = head;
 	int cycleSize = 1;
+	int linkedListSize = 1;
 	
 	while(single != NULL || twice != NULL){
 		single = single->next;
@@ -77,6 +79,7 @@ node *FindStartNodeOfCycle(node *head){
 	
 	int i = 1;
 	int found = 0;
+	linkedListSize = cycleSize;
 	while(1){
 		single->flag = 1;
 		i = 1;
@@ -94,8 +97,10 @@ node *FindStartNodeOfCycle(node *head){
 		single->flag = 1;
 	}
 
-	while(head->flag != 1)
+	while(head->flag != 1){
+		linkedListSize++;	
 		head = head->next;
-
+	}
+	cout << "Number of elements in the linked list = " << linkedListSize << endl;
 	return head;
 }
