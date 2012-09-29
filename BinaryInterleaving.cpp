@@ -32,8 +32,8 @@ int main(){
 		if(Z[i] == '2')
 			break;
 	lZ = i-1;
-	
-	cout << lZ << " " << lX << " " << lY << endl;
+ 
+	//cout << lZ << " " << lX << " " << lY << endl;
 	int construct[lZ+1][lX+1][lY+1];
 
 	for(i = 0; i <= lZ; i++)
@@ -47,17 +47,17 @@ int main(){
 		construct[1][0][1] = 1;
 
 	if(construct[1][1][0] != 1 && construct[1][0][1] != 1)
-		cout << "Not possible" << endl;
+		cout << "Interleaving not possible" << endl;
 
 	for(i = 2; i <= lZ; i++)
 		for(j = 0; j <= i; j++)
 			for(k = 0; k <= i; k++){
 				if(i-1 > 0 && j-1 >= 0 && j <= lX && k <= lY && construct[i-1][j-1][k] == 1 && Z[i] == X[j] && construct[i][j][k] == 0){
-					cout << i << " " << j << " " << k << endl;
+					//cout << i << " " << j << " " << k << endl;
 					construct[i][j][k] = 1;
 				}
 				if(i-1 > 0 && k-1 >= 0 && k <= lY && j <= lX && construct[i-1][j][k-1] == 1 && Z[i] == Y[k] && construct[i][j][k] == 0){
-					cout << i << " " << j << " " << k << endl;
+					//cout << i << " " << j << " " << k << endl;
 					construct[i][j][k] = 1; 
 				}
 			}
