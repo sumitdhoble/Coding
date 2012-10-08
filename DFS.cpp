@@ -1,5 +1,5 @@
 #include<iostream>
-#include<queue>
+#include<stack>
 
 #define VERTICES 6
 #define NOTVISITED -1
@@ -7,7 +7,6 @@
 #define EXPLORED 1
 
 using namespace std;
-
 
 /*
 http://en.wikipedia.org/wiki/File:6n-graph2.svg
@@ -86,10 +85,10 @@ int main(){
 	for(i = 1; i <= VERTICES; i++)
 		vertices[i] = Vertex(i);
 
-	queue<Vertex> q;
+	stack<Vertex> s;
 	Vertex curr;
 	Vertex neighbor;
-	q.push(vertices[1]);
+	s.push(vertices[1]);
 	int explored[VERTICES+1];
 	int inQueue[VERTICES+1];
 	for(i = 1; i <= VERTICES; i++){
@@ -97,9 +96,9 @@ int main(){
 		inQueue[i] = 0;
 	}
 
-	while(q.size() != 0){
-			curr = q.front();
-			q.pop();
+	while(s.size() != 0){
+			curr = s.top();
+			s.pop();
 			cout << "Current Node :" << curr.getVertexNumber() << endl;
 			explored[curr.getVertexNumber()] = 1;
 			for(i = 1; i <= VERTICES; i++){
@@ -116,7 +115,7 @@ int main(){
 				}
 				else{
 					cout << "Neighbor :" << i << " Status :" << neighbor.getStatus() << endl;
-					q.push(vertices[i]);
+					s.push(vertices[i]);
 					inQueue[i] = 1;
 				}
 			}
